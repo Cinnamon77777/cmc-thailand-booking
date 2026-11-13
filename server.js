@@ -286,6 +286,29 @@ function createBookingCard({
 /*
   รับข้อมูลจาก LINE
 */
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    service: "CMC Thailand Booking"
+  });
+});
+
+/*
+  วาง API รับการจองตรงนี้
+*/
+app.post("/api/bookings", async (req, res) => {
+  // ตรวจข้อมูล
+  // ตรวจคิว
+  // บันทึก Supabase
+  // ส่งผลกลับให้หน้า booking.html
+});
+
+/*
+  LINE webhook เดิมอยู่ข้างล่าง
+*/
+app.post("/webhook", async (req, res) => {
+  // โค้ดรับข้อความจาก LINE
+});
 app.post("/webhook", async (req, res) => {
   if (!verifyLineSignature(req)) {
     console.error("Invalid LINE signature");
