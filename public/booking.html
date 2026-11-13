@@ -2,7 +2,11 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
   <title>จองสนาม CMC Thailand</title>
 
   <style>
@@ -16,6 +20,10 @@
       font-family: Arial, sans-serif;
       color: white;
       background: linear-gradient(160deg, #063b17, #031d0c);
+    }
+
+    body.modal-open {
+      overflow: hidden;
     }
 
     .container {
@@ -96,6 +104,11 @@
       background: #bd1510;
     }
 
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.65;
+    }
+
     footer {
       margin-top: 20px;
       padding: 15px;
@@ -103,6 +116,212 @@
       color: #d7f5df;
       border-radius: 14px;
       background: rgba(0, 0, 0, 0.25);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .booking-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-top: 30px;
+      background: rgba(0, 0, 0, 0.72);
+    }
+
+    .booking-dialog {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      max-height: 92vh;
+      padding: 26px 20px 32px;
+      overflow-y: auto;
+      color: #111827;
+      background: #ffffff;
+      border-radius: 24px 24px 0 0;
+    }
+
+    .booking-dialog h2 {
+      margin: 0 45px 20px 0;
+      font-size: 24px;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 15px;
+      right: 16px;
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      color: #111827;
+      background: #f3f4f6;
+      border-radius: 50%;
+      font-size: 26px;
+      line-height: 38px;
+    }
+
+    .selected-field {
+      padding: 15px;
+      margin-bottom: 20px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 14px;
+    }
+
+    #selectedFieldName {
+      font-size: 19px;
+      font-weight: bold;
+    }
+
+    #selectedFieldPrice {
+      margin-top: 5px;
+      color: #15803d;
+    }
+
+    .booking-dialog label {
+      display: block;
+      margin: 16px 0 8px;
+      font-weight: bold;
+    }
+
+    .booking-dialog input,
+    .booking-dialog select {
+      width: 100%;
+      padding: 14px;
+      color: #111827;
+      background: #ffffff;
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      font-size: 16px;
+    }
+
+    .booking-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      padding: 16px;
+      margin-top: 20px;
+      background: #f0fdf4;
+      border-radius: 14px;
+    }
+
+    .booking-total strong {
+      color: #15803d;
+      font-size: 22px;
+      white-space: nowrap;
+    }
+
+    .confirm-booking-button {
+      margin-top: 18px;
+      padding: 16px;
+      background: #16a34a;
+    }
+
+    .confirm-booking-button:active {
+      background: #15803d;
+    }
+
+    .booking-error {
+      min-height: 22px;
+      margin: 12px 0 0;
+      color: #dc2626;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .booking-note {
+      margin: 12px 0 0;
+      color: #64748b;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .success-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.75);
+    }
+
+    .success-card {
+      width: 100%;
+      max-width: 430px;
+      overflow: hidden;
+      color: #111827;
+      background: #ffffff;
+      border-radius: 22px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+    }
+
+    .success-header {
+      padding: 22px;
+      color: #ffffff;
+      background: #15803d;
+    }
+
+    .success-header h2 {
+      margin: 0;
+      font-size: 25px;
+    }
+
+    .success-header p {
+      margin: 7px 0 0;
+      color: #dcfce7;
+    }
+
+    .success-body {
+      padding: 20px;
+    }
+
+    .success-code {
+      margin-bottom: 16px;
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    .success-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 11px 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .success-row span {
+      color: #64748b;
+    }
+
+    .success-row strong {
+      text-align: right;
+    }
+
+    .success-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      margin-top: 18px;
+      background: #f0fdf4;
+      border-radius: 14px;
+    }
+
+    .success-total strong {
+      color: #15803d;
+      font-size: 23px;
+    }
+
+    .success-close {
+      margin-top: 18px;
+      background: #15803d;
     }
   </style>
 </head>
@@ -122,7 +341,10 @@
           <span class="price">600 บาท/ชม.</span>
         </div>
         <div class="size">สนามขนาดใหญ่</div>
-        <button onclick="selectField('CMC Thailand A', 600)">
+        <button
+          type="button"
+          onclick="selectField('CMC Thailand A', 600)"
+        >
           จองสนาม A
         </button>
       </article>
@@ -133,7 +355,10 @@
           <span class="price">700 บาท/ชม.</span>
         </div>
         <div class="size">สนามขนาดใหญ่</div>
-        <button onclick="selectField('CMC Thailand B', 700)">
+        <button
+          type="button"
+          onclick="selectField('CMC Thailand B', 700)"
+        >
           จองสนาม B
         </button>
       </article>
@@ -144,46 +369,13 @@
           <span class="price">400 บาท/ชม.</span>
         </div>
         <div class="size">สนามขนาดกลาง</div>
-        <button onclick="selectField('CMC Thailand C', 400)">
+        <button
+          type="button"
+          onclick="selectField('CMC Thailand C', 400)"
+        >
           จองสนาม C
         </button>
       </article>
 
       <article class="field">
-        <div class="field-info">
-          <h2>CMC Thailand D</h2>
-          <span class="price">200 บาท/ชม.</span>
-        </div>
-        <div class="size">สนามขนาดเล็ก</div>
-        <button onclick="selectField('CMC Thailand D', 200)">
-          จองสนาม D
-        </button>
-      </article>
-
-      <article class="field">
-        <div class="field-info">
-          <h2>CMC Thailand E</h2>
-          <span class="price">200 บาท/ชม.</span>
-        </div>
-        <div class="size">สนามขนาดเล็ก</div>
-        <button onclick="selectField('CMC Thailand E', 200)">
-          จองสนาม E
-        </button>
-      </article>
-    </section>
-
-    <footer>
-      เปิดให้บริการทุกวัน กรุณาเลือกสนามเพื่อเริ่มการจอง
-    </footer>
-  </main>
-
-  <script>
-    function selectField(fieldName, price) {
-      alert(
-        "คุณเลือก " + fieldName +
-        "\nราคา " + price + " บาทต่อชั่วโมง"
-      );
-    }
-  </script>
-</body>
-</html>
+        
