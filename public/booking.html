@@ -2,6 +2,7 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
+
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
@@ -14,12 +15,20 @@
       box-sizing: border-box;
     }
 
+    html,
+    body {
+      min-height: 100%;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
+      overflow-x: hidden;
+      overflow-y: auto;
       font-family: Arial, sans-serif;
-      color: white;
+      color: #ffffff;
       background: linear-gradient(160deg, #063b17, #031d0c);
+      -webkit-overflow-scrolling: touch;
     }
 
     body.modal-open {
@@ -33,8 +42,8 @@
     }
 
     header {
-      text-align: center;
       margin-bottom: 24px;
+      text-align: center;
     }
 
     .ball {
@@ -70,14 +79,14 @@
       gap: 12px;
     }
 
-    h2 {
+    .field h2 {
       margin: 0;
       font-size: 20px;
     }
 
     .price {
-      white-space: nowrap;
       padding: 7px 11px;
+      white-space: nowrap;
       border-radius: 999px;
       background: #05170a;
       font-weight: bold;
@@ -93,7 +102,7 @@
       padding: 13px;
       border: 0;
       border-radius: 12px;
-      color: white;
+      color: #ffffff;
       background: #e9231c;
       font-size: 17px;
       font-weight: bold;
@@ -112,8 +121,8 @@
     footer {
       margin-top: 20px;
       padding: 15px;
-      text-align: center;
       color: #d7f5df;
+      text-align: center;
       border-radius: 14px;
       background: rgba(0, 0, 0, 0.25);
     }
@@ -121,6 +130,8 @@
     .hidden {
       display: none !important;
     }
+
+    /* กล่องเลือกวันและเวลา */
 
     .booking-modal {
       position: fixed;
@@ -241,6 +252,8 @@
       text-align: center;
     }
 
+    /* การ์ดจองสำเร็จ */
+
     .success-modal {
       position: fixed;
       inset: 0;
@@ -330,17 +343,30 @@
   <main class="container">
     <header>
       <div class="ball">⚽</div>
+
       <h1>CMC Thailand</h1>
-      <div class="subtitle">เลือกสนามที่ต้องการจอง</div>
+
+      <div class="subtitle">
+        เลือกสนามที่ต้องการจอง
+      </div>
     </header>
 
     <section class="fields">
+      <!-- สนาม A -->
+
       <article class="field">
         <div class="field-info">
           <h2>CMC Thailand A</h2>
-          <span class="price">600 บาท/ชม.</span>
+
+          <span class="price">
+            600 บาท/ชม.
+          </span>
         </div>
-        <div class="size">สนามขนาดใหญ่</div>
+
+        <div class="size">
+          สนามขนาดใหญ่
+        </div>
+
         <button
           type="button"
           onclick="selectField('CMC Thailand A', 600)"
@@ -349,12 +375,21 @@
         </button>
       </article>
 
+      <!-- สนาม B -->
+
       <article class="field">
         <div class="field-info">
           <h2>CMC Thailand B</h2>
-          <span class="price">700 บาท/ชม.</span>
+
+          <span class="price">
+            700 บาท/ชม.
+          </span>
         </div>
-        <div class="size">สนามขนาดใหญ่</div>
+
+        <div class="size">
+          สนามขนาดใหญ่
+        </div>
+
         <button
           type="button"
           onclick="selectField('CMC Thailand B', 700)"
@@ -363,12 +398,21 @@
         </button>
       </article>
 
+      <!-- สนาม C -->
+
       <article class="field">
         <div class="field-info">
           <h2>CMC Thailand C</h2>
-          <span class="price">400 บาท/ชม.</span>
+
+          <span class="price">
+            400 บาท/ชม.
+          </span>
         </div>
-        <div class="size">สนามขนาดกลาง</div>
+
+        <div class="size">
+          สนามขนาดกลาง
+        </div>
+
         <button
           type="button"
           onclick="selectField('CMC Thailand C', 400)"
@@ -376,12 +420,22 @@
           จองสนาม C
         </button>
       </article>
+
+      <!-- สนาม D -->
+
       <article class="field">
         <div class="field-info">
           <h2>CMC Thailand D</h2>
-          <span class="price">200 บาท/ชม.</span>
+
+          <span class="price">
+            200 บาท/ชม.
+          </span>
         </div>
-        <div class="size">สนามขนาดเล็ก</div>
+
+        <div class="size">
+          สนามขนาดเล็ก
+        </div>
+
         <button
           type="button"
           onclick="selectField('CMC Thailand D', 200)"
@@ -390,12 +444,21 @@
         </button>
       </article>
 
+      <!-- สนาม E -->
+
       <article class="field">
         <div class="field-info">
           <h2>CMC Thailand E</h2>
-          <span class="price">200 บาท/ชม.</span>
+
+          <span class="price">
+            200 บาท/ชม.
+          </span>
         </div>
-        <div class="size">สนามขนาดเล็ก</div>
+
+        <div class="size">
+          สนามขนาดเล็ก
+        </div>
+
         <button
           type="button"
           onclick="selectField('CMC Thailand E', 200)"
@@ -403,11 +466,538 @@
           จองสนาม E
         </button>
       </article>
-          </section>
+    </section>
 
     <footer>
       เปิดให้บริการทุกวัน กรุณาเลือกสนามเพื่อเริ่มการจอง
     </footer>
   </main>
- 
-        
+
+  <!-- แบบฟอร์มเลือกวันและเวลา -->
+
+  <div
+    id="bookingModal"
+    class="booking-modal hidden"
+    role="dialog"
+    aria-modal="true"
+  >
+    <div class="booking-dialog">
+      <button
+        type="button"
+        class="close-button"
+        onclick="closeBookingForm()"
+        aria-label="ปิด"
+      >
+        ×
+      </button>
+
+      <h2>จองสนาม</h2>
+
+      <div class="selected-field">
+        <div id="selectedFieldName">
+          สนามที่เลือก
+        </div>
+
+        <div id="selectedFieldPrice">
+          0 บาท/ชั่วโมง
+        </div>
+      </div>
+
+      <label for="bookingDate">
+        วันที่ต้องการจอง
+      </label>
+
+      <input
+        id="bookingDate"
+        type="date"
+      >
+
+      <label for="startTime">
+        เวลาเริ่มต้น
+      </label>
+
+      <select id="startTime">
+        <option value="">เลือกเวลา</option>
+        <option value="08:00">08:00 น.</option>
+        <option value="09:00">09:00 น.</option>
+        <option value="10:00">10:00 น.</option>
+        <option value="11:00">11:00 น.</option>
+        <option value="12:00">12:00 น.</option>
+        <option value="13:00">13:00 น.</option>
+        <option value="14:00">14:00 น.</option>
+        <option value="15:00">15:00 น.</option>
+        <option value="16:00">16:00 น.</option>
+        <option value="17:00">17:00 น.</option>
+        <option value="18:00">18:00 น.</option>
+        <option value="19:00">19:00 น.</option>
+        <option value="20:00">20:00 น.</option>
+        <option value="21:00">21:00 น.</option>
+        <option value="22:00">22:00 น.</option>
+      </select>
+
+      <label for="duration">
+        ระยะเวลา
+      </label>
+
+      <select
+        id="duration"
+        onchange="updateBookingTotal()"
+      >
+        <option value="1">1 ชั่วโมง</option>
+        <option value="2">2 ชั่วโมง</option>
+        <option value="3">3 ชั่วโมง</option>
+        <option value="4">4 ชั่วโมง</option>
+      </select>
+
+      <div class="booking-total">
+        <span>
+          ยอดชำระหน้าสนาม
+        </span>
+
+        <strong id="bookingTotal">
+          0 บาท
+        </strong>
+      </div>
+
+      <button
+        id="confirmBookingButton"
+        type="button"
+        class="confirm-booking-button"
+        onclick="confirmBooking()"
+      >
+        ยืนยันการจอง
+      </button>
+
+      <p
+        id="bookingError"
+        class="booking-error"
+      ></p>
+
+      <p class="booking-note">
+        ระบบจะตรวจสอบคิวอีกครั้งก่อนยืนยันการจอง
+      </p>
+    </div>
+  </div>
+
+  <!-- การ์ดแสดงผลเมื่อจองสำเร็จ -->
+
+  <div
+    id="successModal"
+    class="success-modal hidden"
+    role="dialog"
+    aria-modal="true"
+  >
+    <div class="success-card">
+      <div class="success-header">
+        <h2>✓ จองสำเร็จ</h2>
+
+        <p>
+          ระบบยืนยันการจองสนามเรียบร้อยแล้ว
+        </p>
+      </div>
+
+      <div class="success-body">
+        <div
+          id="successBookingCode"
+          class="success-code"
+        ></div>
+
+        <div class="success-row">
+          <span>สนาม</span>
+          <strong id="successField"></strong>
+        </div>
+
+        <div class="success-row">
+          <span>วันที่</span>
+          <strong id="successDate"></strong>
+        </div>
+
+        <div class="success-row">
+          <span>เวลา</span>
+          <strong id="successTime"></strong>
+        </div>
+
+        <div class="success-row">
+          <span>ระยะเวลา</span>
+          <strong id="successDuration"></strong>
+        </div>
+
+        <div class="success-total">
+          <span>
+            ยอดชำระหน้าสนาม
+          </span>
+
+          <strong id="successTotal"></strong>
+        </div>
+
+        <button
+          type="button"
+          class="success-close"
+          onclick="closeSuccessModal()"
+        >
+          เสร็จสิ้น
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let selectedField = "";
+    let selectedPrice = 0;
+    let bookingIsSubmitting = false;
+
+    function getToday() {
+      const now = new Date();
+
+      const localDate = new Date(
+        now.getTime() -
+        now.getTimezoneOffset() * 60000
+      );
+
+      return localDate
+        .toISOString()
+        .split("T")[0];
+    }
+
+    function selectField(fieldName, price) {
+      selectedField = fieldName;
+      selectedPrice = Number(price);
+
+      const modal =
+        document.getElementById("bookingModal");
+
+      document.getElementById(
+        "selectedFieldName"
+      ).textContent = fieldName;
+
+      document.getElementById(
+        "selectedFieldPrice"
+      ).textContent =
+        selectedPrice.toLocaleString("th-TH") +
+        " บาท/ชั่วโมง";
+
+      const dateInput =
+        document.getElementById("bookingDate");
+
+      dateInput.min = getToday();
+      dateInput.value = "";
+
+      document.getElementById(
+        "startTime"
+      ).value = "";
+
+      document.getElementById(
+        "duration"
+      ).value = "1";
+
+      document.getElementById(
+        "bookingError"
+      ).textContent = "";
+
+      updateBookingTotal();
+
+      modal.classList.remove("hidden");
+
+      document.body.classList.add("modal-open");
+    }
+
+    function closeBookingForm() {
+      if (bookingIsSubmitting) {
+        return;
+      }
+
+      document
+        .getElementById("bookingModal")
+        .classList.add("hidden");
+
+      document.body.classList.remove("modal-open");
+    }
+
+    function updateBookingTotal() {
+      const duration = Number(
+        document.getElementById("duration").value
+      ) || 1;
+
+      const totalPrice =
+        selectedPrice * duration;
+
+      document.getElementById(
+        "bookingTotal"
+      ).textContent =
+        totalPrice.toLocaleString("th-TH") +
+        " บาท";
+    }
+
+    function calculateEndTime(
+      startTime,
+      duration
+    ) {
+      const parts = startTime.split(":");
+
+      const startHour =
+        Number(parts[0]);
+
+      const startMinute =
+        Number(parts[1]);
+
+      const totalMinutes =
+        startHour * 60 +
+        startMinute +
+        duration * 60;
+
+      const endHour =
+        Math.floor(totalMinutes / 60);
+
+      const endMinute =
+        totalMinutes % 60;
+
+      if (endHour >= 24) {
+        return null;
+      }
+
+      return (
+        String(endHour).padStart(2, "0") +
+        ":" +
+        String(endMinute).padStart(2, "0")
+      );
+    }
+
+    function formatThaiDate(dateText) {
+      const date = new Date(
+        dateText + "T12:00:00+07:00"
+      );
+
+      return new Intl.DateTimeFormat(
+        "th-TH",
+        {
+          weekday: "long",
+          day: "numeric",
+          month: "short",
+          year: "numeric",
+          timeZone: "Asia/Bangkok"
+        }
+      ).format(date);
+    }
+
+    async function confirmBooking() {
+      if (bookingIsSubmitting) {
+        return;
+      }
+
+      const bookingDate =
+        document.getElementById(
+          "bookingDate"
+        ).value;
+
+      const startTime =
+        document.getElementById(
+          "startTime"
+        ).value;
+
+      const duration = Number(
+        document.getElementById(
+          "duration"
+        ).value
+      );
+
+      const errorElement =
+        document.getElementById(
+          "bookingError"
+        );
+
+      const confirmButton =
+        document.getElementById(
+          "confirmBookingButton"
+        );
+
+      errorElement.textContent = "";
+
+      if (!bookingDate) {
+        errorElement.textContent =
+          "กรุณาเลือกวันที่";
+        return;
+      }
+
+      if (!startTime) {
+        errorElement.textContent =
+          "กรุณาเลือกเวลาเริ่มต้น";
+        return;
+      }
+
+      if (bookingDate < getToday()) {
+        errorElement.textContent =
+          "ไม่สามารถเลือกวันที่ผ่านมาแล้ว";
+        return;
+      }
+
+      const endTime =
+        calculateEndTime(
+          startTime,
+          duration
+        );
+
+      if (!endTime) {
+        errorElement.textContent =
+          "เวลาสิ้นสุดต้องไม่เกินเที่ยงคืน";
+        return;
+      }
+
+      bookingIsSubmitting = true;
+
+      confirmButton.disabled = true;
+
+      confirmButton.textContent =
+        "กำลังตรวจสอบคิว...";
+
+      try {
+        const response =
+          await fetch("/api/bookings", {
+            method: "POST",
+
+            headers: {
+              "Content-Type":
+                "application/json"
+            },
+
+            body: JSON.stringify({
+              fieldName: selectedField,
+              bookingDate: bookingDate,
+              startTime: startTime,
+              duration: duration
+            })
+          });
+
+        let result;
+
+        try {
+          result = await response.json();
+        } catch (error) {
+          throw new Error(
+            "ยังไม่ได้เชื่อม API การจองใน server.js"
+          );
+        }
+
+        if (!response.ok) {
+          if (
+            response.status === 409 ||
+            result.code ===
+              "TIME_SLOT_UNAVAILABLE"
+          ) {
+            throw new Error(
+              "ช่วงเวลานี้มีผู้จองแล้ว กรุณาเลือกเวลาอื่น"
+            );
+          }
+
+          throw new Error(
+            result.message ||
+            "ไม่สามารถจองสนามได้"
+          );
+        }
+
+        const totalPrice =
+          Number(
+            result.booking.total_price
+          ) ||
+          selectedPrice * duration;
+
+        const bookingCode =
+          result.booking.booking_code ||
+          result.booking.id ||
+          "-";
+
+        document
+          .getElementById("bookingModal")
+          .classList.add("hidden");
+
+        showBookingSuccess({
+          bookingCode: bookingCode,
+          fieldName: selectedField,
+          bookingDate: bookingDate,
+          startTime: startTime,
+          endTime: endTime,
+          duration: duration,
+          totalPrice: totalPrice
+        });
+      } catch (error) {
+        errorElement.textContent =
+          error.message ||
+          "ระบบขัดข้อง กรุณาลองใหม่";
+      } finally {
+        bookingIsSubmitting = false;
+
+        confirmButton.disabled = false;
+
+        confirmButton.textContent =
+          "ยืนยันการจอง";
+      }
+    }
+
+    function showBookingSuccess(booking) {
+      document.getElementById(
+        "successBookingCode"
+      ).textContent =
+        "เลขที่การจอง #" +
+        booking.bookingCode;
+
+      document.getElementById(
+        "successField"
+      ).textContent =
+        booking.fieldName;
+
+      document.getElementById(
+        "successDate"
+      ).textContent =
+        formatThaiDate(
+          booking.bookingDate
+        );
+
+      document.getElementById(
+        "successTime"
+      ).textContent =
+        booking.startTime +
+        " - " +
+        booking.endTime +
+        " น.";
+
+      document.getElementById(
+        "successDuration"
+      ).textContent =
+        booking.duration +
+        " ชั่วโมง";
+
+      document.getElementById(
+        "successTotal"
+      ).textContent =
+        booking.totalPrice
+          .toLocaleString("th-TH") +
+        " บาท";
+
+      document
+        .getElementById("successModal")
+        .classList.remove("hidden");
+
+      document.body.classList.add("modal-open");
+    }
+
+    function closeSuccessModal() {
+      document
+        .getElementById("successModal")
+        .classList.add("hidden");
+
+      document.body.classList.remove("modal-open");
+
+      document.getElementById(
+        "bookingDate"
+      ).value = "";
+
+      document.getElementById(
+        "startTime"
+      ).value = "";
+
+      document.getElementById(
+        "duration"
+      ).value = "1";
+    }
+  </script>
+</body>
+</html>
