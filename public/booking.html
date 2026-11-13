@@ -1,1 +1,189 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>จองสนาม CMC Thailand</title>
 
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+      background: linear-gradient(160deg, #063b17, #031d0c);
+    }
+
+    .container {
+      max-width: 720px;
+      margin: auto;
+      padding: 24px 16px 40px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .ball {
+      font-size: 44px;
+    }
+
+    h1 {
+      margin: 5px 0;
+      font-size: 30px;
+    }
+
+    .subtitle {
+      color: #c7fbd5;
+    }
+
+    .fields {
+      display: grid;
+      gap: 14px;
+    }
+
+    .field {
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .field-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .price {
+      white-space: nowrap;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: #05170a;
+      font-weight: bold;
+    }
+
+    .size {
+      margin: 10px 0 14px;
+      color: #d7f5df;
+    }
+
+    button {
+      width: 100%;
+      padding: 13px;
+      border: 0;
+      border-radius: 12px;
+      color: white;
+      background: #e9231c;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:active {
+      background: #bd1510;
+    }
+
+    footer {
+      margin-top: 20px;
+      padding: 15px;
+      text-align: center;
+      color: #d7f5df;
+      border-radius: 14px;
+      background: rgba(0, 0, 0, 0.25);
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <header>
+      <div class="ball">⚽</div>
+      <h1>CMC Thailand</h1>
+      <div class="subtitle">เลือกสนามที่ต้องการจอง</div>
+    </header>
+
+    <section class="fields">
+      <article class="field">
+        <div class="field-info">
+          <h2>CMC Thailand A</h2>
+          <span class="price">600 บาท/ชม.</span>
+        </div>
+        <div class="size">สนามขนาดใหญ่</div>
+        <button onclick="selectField('CMC Thailand A', 600)">
+          จองสนาม A
+        </button>
+      </article>
+
+      <article class="field">
+        <div class="field-info">
+          <h2>CMC Thailand B</h2>
+          <span class="price">700 บาท/ชม.</span>
+        </div>
+        <div class="size">สนามขนาดใหญ่</div>
+        <button onclick="selectField('CMC Thailand B', 700)">
+          จองสนาม B
+        </button>
+      </article>
+
+      <article class="field">
+        <div class="field-info">
+          <h2>CMC Thailand C</h2>
+          <span class="price">400 บาท/ชม.</span>
+        </div>
+        <div class="size">สนามขนาดกลาง</div>
+        <button onclick="selectField('CMC Thailand C', 400)">
+          จองสนาม C
+        </button>
+      </article>
+
+      <article class="field">
+        <div class="field-info">
+          <h2>CMC Thailand D</h2>
+          <span class="price">200 บาท/ชม.</span>
+        </div>
+        <div class="size">สนามขนาดเล็ก</div>
+        <button onclick="selectField('CMC Thailand D', 200)">
+          จองสนาม D
+        </button>
+      </article>
+
+      <article class="field">
+        <div class="field-info">
+          <h2>CMC Thailand E</h2>
+          <span class="price">200 บาท/ชม.</span>
+        </div>
+        <div class="size">สนามขนาดเล็ก</div>
+        <button onclick="selectField('CMC Thailand E', 200)">
+          จองสนาม E
+        </button>
+      </article>
+    </section>
+
+    <footer>
+      เปิดให้บริการทุกวัน กรุณาเลือกสนามเพื่อเริ่มการจอง
+    </footer>
+  </main>
+
+  <script>
+    function selectField(fieldName, price) {
+      alert(
+        "คุณเลือก " + fieldName +
+        "\nราคา " + price + " บาทต่อชั่วโมง"
+      );
+    }
+  </script>
+</body>
+</html>
