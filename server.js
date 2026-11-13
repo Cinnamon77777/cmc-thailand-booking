@@ -22,7 +22,21 @@ app.get("/health", (req, res) => {
     service: "CMC Thailand Booking"
   });
 });
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    service: "CMC Thailand Booking"
+  });
+});
 
+
+// วางฟังก์ชันสร้างการ์ดตรงนี้
+
+
+app.post("/webhook", (req, res) => {
+  console.log("LINE webhook received");
+  res.sendStatus(200);
+});
 app.post("/webhook", (req, res) => {
   console.log("LINE webhook received");
   res.sendStatus(200);
