@@ -1043,8 +1043,8 @@ if (!bookingDate) {
   <script>
   window.selectField = function (fieldName, price) {
     try {
-      window.selectedField = fieldName;
-      window.selectedPrice = Number(price);
+     selectedField = fieldName;
+    selectedPrice = Number(price);
 
       const modal = document.getElementById("bookingModal");
       const fieldNameElement =
@@ -1146,7 +1146,7 @@ if (!bookingDate) {
       Number(durationElement.value) || 1;
 
     const price =
-      Number(window.selectedPrice) || 0;
+     Number(selectedPrice) || 0;
 
     totalElement.textContent =
       (price * hours).toLocaleString("th-TH") +
