@@ -803,7 +803,6 @@
     }
 
     async function confirmBooking() {
-      alert("เข้าฟังก์ชัน confirmBooking แล้ว");
       if (bookingIsSubmitting) {
         return;
       }
@@ -846,28 +845,23 @@ const phone =
 
       errorElement.textContent = "";
 
-      if (!bookingDate) {
-       if (customerName.length < 2) {
+     if (customerName.length < 2) {
   errorElement.textContent =
     "กรุณากรอกชื่อผู้จอง";
   return;
 }
-      }
 
 if (!/^0\d{9}$/.test(phone)) {
   errorElement.textContent =
     "กรุณากรอกเบอร์โทร 10 หลัก เช่น 0812345678";
   return;
-} errorElement.textContent =
-          "กรุณาเลือกวันที่";
-        return;
-      }
+}
 
-      if (!startTime) {
-        errorElement.textContent =
-          "กรุณาเลือกเวลาเริ่มต้น";
-        return;
-      }
+if (!bookingDate) {
+  errorElement.textContent =
+    "กรุณาเลือกวันที่";
+  return;
+}
 
       if (bookingDate < getToday()) {
         errorElement.textContent =
@@ -1158,28 +1152,7 @@ if (!/^0\d{9}$/.test(phone)) {
       (price * hours).toLocaleString("th-TH") +
       " บาท";
   };
-    window.confirmBooking = async function () {
-  alert("ปุ่มยืนยันทำงานแล้ว");
-
-  const errorElement = document.getElementById("bookingError");
-
-  try {
-    if (errorElement) {
-      errorElement.textContent = "";
-      errorElement.style.display = "block";
-    }
-
-    console.log("เริ่มยืนยันการจอง");
-  } catch (error) {
-    console.error("confirmBooking error:", error);
-
-    if (errorElement) {
-      errorElement.textContent = "เกิดข้อผิดพลาด: " + error.message;
-    }
-
-    alert("เกิดข้อผิดพลาด: " + error.message);
-  }
-};
+    
 </script>
 </body>
   <!-- retry deployment -->
