@@ -297,10 +297,78 @@ app.get("/health", (req, res) => {
   วาง API รับการจองตรงนี้
 */
 app.post("/api/bookings", async (req, res) => {
-  // ตรวจข้อมูล
-  // ตรวจคิว
-  // บันทึก Supabase
-  // ส่งผลกลับให้หน้า booking.html
+  try {
+    const {
+      fieldName,
+      bookingDate,
+      startTime,
+      duration
+    } = req.body;
+
+    const fieldPrices = {
+      "CMC Thailand A": 600,
+      "CMC Thailand B": 700,
+      "CMC Thailand C": 400,
+      "CMC Thailand D": 200,
+      "CMC Thailand E": 200
+    };
+
+    const pricePerHour = fieldPrices[fieldName];
+    const durationHours = Number(duration);
+
+    if (!pricePerHour) {
+      return res.status(400).json({
+        success: false,
+        message: "ไม่พบสนามที่เลือก"
+      });
+    }
+
+    if (!bookingDate || !startTime) {
+      return res.status(400).json({
+        success: false,
+        message: "กรุณาเลือกวันที่และเวลา"
+      });
+    }
+
+    if (
+      !Number.isInteger(durationHours) ||
+      durationHours < 1 ||
+      durationHours > 4
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "ระยะเวลาจองไม่ถูกต้อง"
+      });
+    }
+
+    const totalPrice =
+      pricePerHour * durationHours;
+
+    const bookingCode =
+      "CMC-" +
+      Date.now().toString().slice(-8);
+
+    return res.status(201).json({
+      success: true,
+      booking: {
+        id: bookingCode,
+        booking_code: bookingCode,
+        field_name: fieldName,
+        booking_date: bookingDate,
+        start_time: startTime,
+        duration: durationHours,
+        price_per_hour: pricePerHour,
+        total_price: totalPrice
+      }
+    });
+  } catch (error) {
+    console.error("Booking API error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "ระบบขัดข้อง กรุณาลองใหม่"
+    });
+  }
 });
 
 /*
