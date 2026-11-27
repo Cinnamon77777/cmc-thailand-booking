@@ -136,11 +136,32 @@ app.post(
   async (req, res) => {
     try {
       const {
+        customerName,
+        phone,
         fieldName,
         bookingDate,
         startTime,
         duration
       } = req.body;
+      const cleanCustomerName =
+  String(customerName || "").trim();
+
+const cleanPhone =
+  String(phone || "").replace(/\D/g, "");
+
+if (cleanCustomerName.length < 2) {
+  return res.status(400).json({
+    success: false,
+    message: "กรุณากรอกชื่อผู้จอง"
+  });
+}
+
+if (!/^0\d{9}$/.test(cleanPhone)) {
+  return res.status(400).json({
+    success: false,
+    message: "กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง"
+  });
+}
 
       const pricePerHour =
         FIELD_PRICES[fieldName];
@@ -237,45 +258,53 @@ app.post(
       const result = await pool.query(
         `
           insert into public.bookings (
-            booking_code,
-            field_name,
-            starts_at,
-            ends_at,
-            duration_hours,
-            price_per_hour,
-            total_price,
-            status
-          )
-          values (
-            $1,
-            $2,
-            $3,
-            $4,
-            $5,
-            $6,
-            $7,
-            'confirmed'
-          )
-          returning
-            id,
-            booking_code,
-            field_name,
-            starts_at,
-            ends_at,
-            duration_hours,
-            price_per_hour,
-            total_price,
-            status,
-            created_at
+  booking_code,
+  customer_name,
+  phone,
+  field_name,
+  starts_at,
+  ends_at,
+  duration_hours,
+  price_per_hour,
+  total_price,
+  status
+)
+values (
+  $1,
+  $2,
+  $3,
+  $4,
+  $5,
+  $6,
+  $7,
+  $8,
+  $9,
+  'confirmed'
+)
+returning
+  id,
+  booking_code,
+  customer_name,
+  phone,
+  field_name,
+  starts_at,
+  ends_at,
+  duration_hours,
+  price_per_hour,
+  total_price,
+  status,
+  created_at
         `,
         [
           bookingCode,
-          fieldName,
-          startsAt.toISOString(),
-          endsAt.toISOString(),
-          durationHours,
-          pricePerHour,
-          totalPrice
+  cleanCustomerName,
+  cleanPhone,
+  fieldName,
+  startsAt.toISOString(),
+  endsAt.toISOString(),
+  durationHours,
+  pricePerHour,
+  totalPrice
         ]
       );
 
