@@ -501,8 +501,32 @@
           0 บาท/ชั่วโมง
         </div>
       </div>
+<label for="customerName">
+  ชื่อผู้จอง
+</label>
 
+<input
+  id="customerName"
+  type="text"
+  placeholder="กรอกชื่อผู้จอง"
+  maxlength="100"
+  autocomplete="name"
+>
+
+<label for="phone">
+  เบอร์โทรศัพท์
+</label>
+
+<input
+  id="phone"
+  type="tel"
+  placeholder="เช่น 0812345678"
+  maxlength="10"
+  inputmode="numeric"
+  autocomplete="tel"
+>
       <label for="bookingDate">
+        
         วันที่ต้องการจอง
       </label>
 
@@ -782,7 +806,17 @@
       if (bookingIsSubmitting) {
         return;
       }
+const customerName =
+  document
+    .getElementById("customerName")
+    .value
+    .trim();
 
+const phone =
+  document
+    .getElementById("phone")
+    .value
+    .replace(/\D/g, "");
       const bookingDate =
         document.getElementById(
           "bookingDate"
@@ -812,7 +846,18 @@
       errorElement.textContent = "";
 
       if (!bookingDate) {
-        errorElement.textContent =
+       if (customerName.length < 2) {
+  errorElement.textContent =
+    "กรุณากรอกชื่อผู้จอง";
+  return;
+}
+      }
+
+if (!/^0\d{9}$/.test(phone)) {
+  errorElement.textContent =
+    "กรุณากรอกเบอร์โทร 10 หลัก เช่น 0812345678";
+  return;
+} errorElement.textContent =
           "กรุณาเลือกวันที่";
         return;
       }
@@ -859,10 +904,12 @@
             },
 
             body: JSON.stringify({
-              fieldName: selectedField,
-              bookingDate: bookingDate,
-              startTime: startTime,
-              duration: duration
+               customerName: customerName,
+  phone: phone,
+  fieldName: selectedField,
+  bookingDate: bookingDate,
+  startTime: startTime,
+  duration: duration
             })
           });
 
