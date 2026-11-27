@@ -1045,6 +1045,119 @@ if (!/^0\d{9}$/.test(phone)) {
       ).value = "1";
     }
   </script>
+  <script>
+  window.selectField = function (fieldName, price) {
+    try {
+      window.selectedField = fieldName;
+      window.selectedPrice = Number(price);
+
+      const modal = document.getElementById("bookingModal");
+      const fieldNameElement =
+        document.getElementById("selectedFieldName");
+      const fieldPriceElement =
+        document.getElementById("selectedFieldPrice");
+      const dateInput =
+        document.getElementById("bookingDate");
+      const startTime =
+        document.getElementById("startTime");
+      const duration =
+        document.getElementById("duration");
+      const totalElement =
+        document.getElementById("bookingTotal");
+      const errorElement =
+        document.getElementById("bookingError");
+
+      if (!modal) {
+        alert("ไม่พบ bookingModal");
+        return;
+      }
+
+      if (!fieldNameElement || !fieldPriceElement) {
+        alert("ไม่พบข้อมูลสนามในแบบฟอร์ม");
+        return;
+      }
+
+      fieldNameElement.textContent = fieldName;
+
+      fieldPriceElement.textContent =
+        Number(price).toLocaleString("th-TH") +
+        " บาท/ชั่วโมง";
+
+      if (dateInput) {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(
+          now.getMonth() + 1
+        ).padStart(2, "0");
+        const day = String(
+          now.getDate()
+        ).padStart(2, "0");
+
+        dateInput.min =
+          year + "-" + month + "-" + day;
+      }
+
+      if (startTime) {
+        startTime.value = "";
+      }
+
+      if (duration) {
+        duration.value = "1";
+      }
+
+      if (totalElement) {
+        totalElement.textContent =
+          Number(price).toLocaleString("th-TH") +
+          " บาท";
+      }
+
+      if (errorElement) {
+        errorElement.textContent = "";
+      }
+
+      modal.classList.remove("hidden");
+      document.body.classList.add("modal-open");
+    } catch (error) {
+      alert(
+        "เปิดแบบฟอร์มไม่ได้: " +
+        error.message
+      );
+    }
+  };
+
+  window.closeBookingForm = function () {
+    const modal =
+      document.getElementById("bookingModal");
+
+    if (modal) {
+      modal.classList.add("hidden");
+    }
+
+    document.body.classList.remove("modal-open");
+  };
+
+  window.updateBookingTotal = function () {
+    const durationElement =
+      document.getElementById("duration");
+
+    const totalElement =
+      document.getElementById("bookingTotal");
+
+    if (!durationElement || !totalElement) {
+      return;
+    }
+
+    const hours =
+      Number(durationElement.value) || 1;
+
+    const price =
+      Number(window.selectedPrice) || 0;
+
+    totalElement.textContent =
+      (price * hours).toLocaleString("th-TH") +
+      " บาท";
+  };
+</script>
 </body>
   <!-- retry deployment -->
 </html>
