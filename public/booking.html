@@ -803,6 +803,7 @@
     }
 
     async function confirmBooking() {
+      alert("เข้าฟังก์ชัน confirmBooking แล้ว");
       if (bookingIsSubmitting) {
         return;
       }
@@ -1157,6 +1158,28 @@ if (!/^0\d{9}$/.test(phone)) {
       (price * hours).toLocaleString("th-TH") +
       " บาท";
   };
+    window.confirmBooking = async function () {
+  alert("ปุ่มยืนยันทำงานแล้ว");
+
+  const errorElement = document.getElementById("bookingError");
+
+  try {
+    if (errorElement) {
+      errorElement.textContent = "";
+      errorElement.style.display = "block";
+    }
+
+    console.log("เริ่มยืนยันการจอง");
+  } catch (error) {
+    console.error("confirmBooking error:", error);
+
+    if (errorElement) {
+      errorElement.textContent = "เกิดข้อผิดพลาด: " + error.message;
+    }
+
+    alert("เกิดข้อผิดพลาด: " + error.message);
+  }
+};
 </script>
 </body>
   <!-- retry deployment -->
